@@ -313,4 +313,3 @@ gibi konuların OpenTelemetry ile nasıl görünür hale getirilebileceği hedef
 
 ---
 
-**Hazırlayan**: Madlen AI Gateway
