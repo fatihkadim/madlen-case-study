@@ -1,0 +1,22 @@
+# Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# HTTP İstekleri
+requests==2.32.3
+
+# Veri Validasyonu
+pydantic==2.10.5
+
+# Ortam Değişkenleri
+python-dotenv==1.0.1
+
+# OpenTelemetry - Core
+opentelemetry-api==1.29.0
+opentelemetry-sdk==1.29.0
+
+# OpenTelemetry - Instrumentation
+opentelemetry-instrumentation-fastapi==0.50b0
+
+# OpenTelemetry - Exporter (Jaeger için OTLP)
+opentelemetry-exporter-otlp-proto-grpc==1.29.0

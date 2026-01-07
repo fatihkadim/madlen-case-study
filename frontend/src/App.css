@@ -1,0 +1,498 @@
+/* Genel Ayarlar */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #ffffff;
+  overflow: hidden;
+  /* Sayfa kaymasın, içerik kaysın */
+}
+
+/* Ana Layout (Yan yana iki kutu) */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* --- SIDEBAR (SOL) --- */
+.sidebar {
+  width: 280px;
+  background-color: #202123;
+  /* ChatGPT Dark */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #333;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.sidebar-header h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px;
+  background-color: #343541;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: white;
+  outline: none;
+}
+
+.model-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Scrollbar özelleştirme */
+.model-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.model-list::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.model-item {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #ececec;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.model-item:hover {
+  background-color: #2a2b32;
+}
+
+.model-item.active {
+  background-color: #343541;
+  border: 1px solid #555;
+  font-weight: bold;
+  color: white;
+}
+
+.model-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.model-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.vision-badge {
+  margin-left: 8px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.model-item:hover .vision-badge {
+  opacity: 1;
+}
+
+.sidebar-footer {
+  padding: 15px;
+  font-size: 0.8rem;
+  color: #888;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+/* --- ANA EKRAN (SAĞ) --- */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f8;
+  position: relative;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  background-color: white;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Mesajlar Alanı */
+.messages-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.empty-state {
+  margin-top: 100px;
+  text-align: center;
+  color: #888;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* Mesaj Baloncukları */
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-row.assistant {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  line-height: 1.5;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.user {
+  background-color: #10a37f;
+  /* OpenAI Yeşili */
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+.message-bubble.assistant {
+  background-color: white;
+  color: #333;
+  border-bottom-left-radius: 2px;
+  border: 1px solid #e5e5e5;
+}
+
+.message-bubble p {
+  margin: 0;
+}
+
+.msg-img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Alanı (Alt Kısım) */
+.input-container {
+  padding: 20px;
+  background-color: transparent;
+  /* Arkası şeffaf olsun */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.preview-box {
+  background: white;
+  padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  align-self: flex-start;
+  margin-left: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+}
+
+.preview-box img {
+  height: 60px;
+  border-radius: 4px;
+}
+
+.preview-box button {
+  background: #ff4444;
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: -8px;
+  margin-top: -8px;
+  font-size: 10px;
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  resize: none;
+}
+
+.attach-btn,
+.send-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.attach-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.send-btn {
+  color: #10a37f;
+}
+
+.send-btn:hover {
+  background-color: #e6fcf5;
+}
+
+.send-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Typing animasyonu */
+.typing span {
+  animation: blink 1.4s infinite both;
+  margin: 0 2px;
+  font-size: 1.5rem;
+  line-height: 10px;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.error-toast {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffdddd;
+  color: red;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== YENI ÖZELLIKLER ========== */
+
+/* Clear Chat Button */
+.clear-chat-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.clear-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.clear-chat-btn:active {
+  transform: translateY(0);
+}
+
+/* Copy Button */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.message-bubble:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Message bubble adjustments for copy button */
+.message-bubble {
+  position: relative;
+  padding-top: 16px;
+  /* Extra space for copy button */
+}
+
+/* Glassmorphism Effects */
+.sidebar {
+  background: rgba(32, 33, 35, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.user {
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.9) 0%, rgba(14, 145, 113, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(16, 163, 127, 0.2);
+}
+
+.message-bubble.assistant {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Toast Animation */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Markdown Code Block Styling */
+.message-bubble pre {
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.message-bubble code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.message-bubble pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.message-bubble:not(pre)>code {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #e83e8c;
+}
+
+/* Smooth animations for messages */
+.message-row {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
