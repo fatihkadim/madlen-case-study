@@ -1,4 +1,4 @@
-# 🧙‍♂️ Madlen AI Gateway
+# Madlen AI Gateway
 
 ## Case Study Hakkında
 
@@ -17,7 +17,7 @@ Proje bir "production ürünü" olmaktan ziyade;
 
 ---
 
-## 🎯 Projenin Amacı
+## Projenin Amacı
 
 Bu çalışmanın temel amacı, LLM tabanlı bir sistem geliştirirken sadece "çalışan" bir uygulama üretmek değil;
 aynı zamanda:
@@ -30,7 +30,7 @@ somut bir örnek üzerinden göstermektir.
 
 ---
 
-## 🚀 Genel Bakış
+## Genel Bakış
 
 **Madlen AI Gateway**, kullanıcıların OpenRouter üzerinden sunulan farklı yapay zeka modelleriyle sohbet edebildiği, web tabanlı bir uygulamadır.
 
@@ -43,7 +43,7 @@ Tüm sistem yerel ortamda çalışacak şekilde tasarlanmıştır.
 
 ---
 
-## ✨ Özellikler
+## Özellikler
 
 ### Temel Özellikler
 
@@ -70,7 +70,7 @@ Tüm sistem yerel ortamda çalışacak şekilde tasarlanmıştır.
 
 ---
 
-## 🛠️ Teknoloji Stack
+## Teknoloji Stack
 
 ### Backend
 
@@ -96,7 +96,7 @@ Tüm sistem yerel ortamda çalışacak şekilde tasarlanmıştır.
 
 ---
 
-## 🧠 Teknik Seçimler ve Gerekçeler
+## Teknik Seçimler ve Gerekçeler
 
 ### Backend – FastAPI
 
@@ -165,7 +165,7 @@ Bu sayede proje, farklı sistemlerde minimum konfigürasyon ile çalıştırıla
 
 ---
 
-## 🧪 Testler Hakkında
+## Testler Hakkında
 
 Bu case study kapsamında otomasyon testleri eklenmemiştir.
 
@@ -179,7 +179,7 @@ olarak belirlenmiştir.
 
 ---
 
-## 📦 Kurulum
+## Kurulum
 
 ### Ön Gereksinimler
 
@@ -229,7 +229,7 @@ docker-compose up -d
 
 ---
 
-## ▶️ Uygulamayı Çalıştırma
+## Uygulamayı Çalıştırma
 
 ```bash
 # Backend
@@ -248,7 +248,7 @@ npm run dev
 
 ---
 
-## 🔍 Jaeger ile Trace İzleme
+## Jaeger ile Trace İzleme
 
 1. Frontend üzerinden bir mesaj gönderin
 2. Jaeger UI’yi açın
@@ -265,7 +265,7 @@ ayrı span’ler olarak görüntülenir.
 
 ---
 
-## 📁 Proje Yapısı
+## Proje Yapısı
 
 ```
 madlen/
@@ -299,7 +299,7 @@ madlen/
 
 ---
 
-## 📌 Son Notlar
+## Son Notlar
 
 Bu proje, LLM tabanlı sistemlerde **observability-first** bir yaklaşımın nasıl uygulanabileceğini göstermek amacıyla hazırlanmıştır.
 
